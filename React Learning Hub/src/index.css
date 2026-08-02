@@ -1,0 +1,23 @@
+.navbar {
+  background: #1e3a8a;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.page {
+  text-align: center;
+  padding: 50px;
+}
+
+.dashboard-title {
+  text-align: center;
+  margin: 30px;
+}
