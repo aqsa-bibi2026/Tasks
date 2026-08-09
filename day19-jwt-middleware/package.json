@@ -1,0 +1,21 @@
+{
+  "name": "day19-jwt-middleware",
+  "version": "1.0.0",
+  "description": "JWT Authentication Middleware API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
