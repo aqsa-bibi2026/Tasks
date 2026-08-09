@@ -1,0 +1,22 @@
+{
+  "name": "day20-environment-variables",
+  "version": "1.0.0",
+  "description": "Node.js Environment Variables with dotenv",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "dotenv",
+    "environment-variables",
+    "supabase"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
