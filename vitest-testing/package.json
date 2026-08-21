@@ -1,0 +1,33 @@
+{
+  "name": "vitest-testing",
+  "version": "1.0.0",
+  "description": "Vitest unit testing for React components and Express API routes",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "keywords": [
+    "vitest",
+    "react",
+    "express",
+    "testing"
+  ],
+  "author": "Aqsa Bibi",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^6.1.0",
+    "jsdom": "^30.0.1",
+    "supertest": "^7.2.2",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  }
+}
