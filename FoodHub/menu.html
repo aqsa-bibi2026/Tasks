@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FoodHub Menu</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/style.css">`n</head>
+
+
+<body>
+
+
+<header>
+
+<nav class="navbar">
+
+
+<div class="logo">
+🍔 FoodHub
+</div>
+
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="reservation.html">Reservation</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+
+
+<div class="nav-actions">
+
+<button id="themeBtn">
+🌙
+</button>
+
+
+<a href="cart.html" class="cart-btn">
+🛒 Cart
+</a>
+
+
+</div>
+
+
+
+<div class="hamburger">
+☰
+</div>
+
+
+</nav>
+
+</header>
+
+
+
+
+
+
+
+<section class="menu-banner">
+
+<h1>
+Our Menu
+</h1>
+
+<p>
+Delicious food made with love
+</p>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="menu-section">
+
+
+
+<input 
+id="searchFood"
+type="text"
+placeholder="Search food..."
+>
+
+
+
+
+<div class="categories">
+
+<button onclick="filterFood('All')">
+All
+</button>
+
+<button onclick="filterFood('Burger')">
+Burger
+</button>
+
+<button onclick="filterFood('Pizza')">
+Pizza
+</button>
+
+<button onclick="filterFood('Pasta')">
+Pasta
+</button>
+
+<button onclick="filterFood('Chicken')">
+Chicken
+</button>
+
+<button onclick="filterFood('Dessert')">
+Dessert
+</button>
+
+<button onclick="filterFood('Drink')">
+Drink
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="food-grid">
+
+
+
+<div class="food-card" data-category="Burger">
+
+
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+
+
+<h3>
+Classic Burger
+</h3>
+
+
+<p>
+Cheese burger with fresh ingredients
+</p>
+
+
+<h4>
+$8
+</h4>
+
+
+<button class="add-cart"
+onclick="addToCart({name:'Classic Burger',price:8})">
+
+Add To Cart
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="food-card" data-category="Pizza">
+
+
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+
+
+<h3>
+Italian Pizza
+</h3>
+
+
+<p>
+Fresh pizza with cheese
+</p>
+
+
+<h4>
+$12
+</h4>
+
+
+<button class="add-cart"
+onclick="addToCart({name:'Italian Pizza',price:12})">
+
+Add To Cart
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="food-card" data-category="Pasta">
+
+
+<img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601">
+
+
+<h3>
+Creamy Pasta
+</h3>
+
+
+<p>
+Italian creamy pasta
+</p>
+
+
+<h4>
+$10
+</h4>
+
+
+<button class="add-cart"
+onclick="addToCart({name:'Creamy Pasta',price:10})">
+
+Add To Cart
+
+</button>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+<h3>
+FoodHub Restaurant
+</h3>
+
+</footer>
+
+
+
+
+<script src="js/script.js"></script>
+
+<script src="js/script.js"></script>`n</body>
+
+</html>

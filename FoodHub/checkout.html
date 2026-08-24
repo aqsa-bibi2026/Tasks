@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>FoodHub Checkout</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+🍔 FoodHub
+</div>
+
+</nav>
+
+</header>
+
+
+
+
+<section>
+
+
+<h2>
+Checkout
+</h2>
+
+
+
+<form id="checkoutForm">
+
+
+<input placeholder="Full Name" id="orderName">
+
+
+<input placeholder="Phone Number" id="orderPhone">
+
+
+<input placeholder="Address" id="orderAddress">
+
+
+<select>
+
+<option>
+Cash On Delivery
+</option>
+
+<option>
+Card Payment
+</option>
+
+</select>
+
+
+
+<button>
+Place Order
+</button>
+
+
+
+</form>
+
+
+
+</section>
+
+
+
+
+
+<script>
+
+document
+.getElementById("checkoutForm")
+.addEventListener("submit",(e)=>{
+
+
+e.preventDefault();
+
+
+localStorage.removeItem("foodCart");
+
+
+window.location.href="success.html";
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
