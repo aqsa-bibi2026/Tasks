@@ -1,0 +1,44 @@
+Table profiles {
+  id uuid [pk]
+  full_name text [not null]
+  email text [not null, unique]
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+Table projects {
+  id uuid [pk]
+  owner_id uuid
+  name text [not null]
+  description text
+  status text
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+Table project_members {
+  project_id uuid [not null]
+  user_id uuid [not null]
+  role text
+  joined_at timestamptz
+  indexes { (project_id, user_id) [pk] }
+}
+
+Table tasks {
+  id uuid [pk]
+  project_id uuid [not null]
+  assigned_to uuid
+  title text [not null]
+  description text
+  status text
+  priority text
+  due_date timestamptz
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+Ref: projects.owner_id > profiles.id
+Ref: project_members.project_id > projects.id
+Ref: project_members.user_id > profiles.id
+Ref: tasks.project_id > projects.id
+Ref: tasks.assigned_to > profiles.id
