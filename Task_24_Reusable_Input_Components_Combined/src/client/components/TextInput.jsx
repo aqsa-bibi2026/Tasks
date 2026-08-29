@@ -1,0 +1,2 @@
+import React from 'react'; import FormField from './FormField.jsx';
+export default function TextInput({id,label,icon,helper,error,success,required,register,type='text',placeholder,disabled=false}){return <FormField label={label} htmlFor={id} icon={icon} helper={helper} error={error} success={success} required={required}><div className="input-shell">{icon&&React.createElement(icon,{size:17})}<input id={id} type={type} placeholder={placeholder} disabled={disabled} aria-invalid={error?'true':'false'} {...register}/></div></FormField>}

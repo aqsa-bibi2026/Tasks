@@ -1,0 +1,2 @@
+import React from 'react'; import FormField from './FormField.jsx';
+export default function TextareaInput({id,label,icon,helper,error,success,required,register,value='',maxLength=500,placeholder}){return <FormField label={label} htmlFor={id} icon={icon} helper={helper} error={error} success={success} required={required} className="full-width"><div className="textarea-shell"><textarea id={id} maxLength={maxLength} placeholder={placeholder} {...register}/><span className="counter">{value.length}/{maxLength}</span></div></FormField>}
