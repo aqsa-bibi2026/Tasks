@@ -1,0 +1,451 @@
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
+
+import {
+  ArrowDownToLine,
+  CheckCircle2,
+  Cloud,
+  CloudUpload,
+  File,
+  FileArchive,
+  FileImage,
+  FileText,
+  FolderOpen,
+  HardDrive,
+  LoaderCircle,
+  LockKeyhole,
+  RefreshCcw,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Trash2,
+  UploadCloud
+} from 'lucide-react';
+
+import { api } from './api.js';
+
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
+
+  const units = ['B', 'KB', 'MB', 'GB'];
+  const index = Math.min(
+    Math.floor(Math.log(bytes) / Math.log(1024)),
+    units.length - 1
+  );
+
+  return `${(bytes / 1024 ** index).toFixed(index ? 1 : 0)} ${units[index]}`;
+}
+
+function iconFor(mime) {
+  if (mime?.startsWith('image/')) return <FileImage size={19} />;
+  if (mime === 'application/pdf' || mime?.startsWith('text/')) {
+    return <FileText size={19} />;
+  }
+  if (mime?.includes('zip') || mime?.includes('compressed')) {
+    return <FileArchive size={19} />;
+  }
+  return <File size={19} />;
+}
+
+export default function App() {
+  const inputRef = useRef(null);
+
+  const [files, setFiles] = useState([]);
+  const [stats, setStats] = useState({});
+  const [query, setQuery] = useState('');
+  const [dragging, setDragging] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+
+  const loadFiles = useCallback(async () => {
+    setLoading(true);
+    setError('');
+
+    try {
+      const { data } = await api.get('/files');
+      setFiles(data.files || []);
+      setStats(data.stats || {});
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+        'Could not load files.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadFiles();
+  }, [loadFiles]);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return files;
+
+    return files.filter((file) =>
+      [
+        file.originalName,
+        file.mimeType,
+        file.storagePath
+      ].some((value) =>
+        String(value || '').toLowerCase().includes(q)
+      )
+    );
+  }, [files, query]);
+
+  async function uploadFile(file) {
+    if (!file) return;
+
+    setError('');
+    setMessage('');
+    setUploading(true);
+    setProgress(0);
+
+    const form = new FormData();
+    form.append('file', file);
+
+    try {
+      const { data } = await api.post(
+        '/files/upload',
+        form,
+        {
+          onUploadProgress(event) {
+            if (event.total) {
+              setProgress(
+                Math.round(
+                  event.loaded * 100 / event.total
+                )
+              );
+            }
+          }
+        }
+      );
+
+      setMessage(data.message);
+      await loadFiles();
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+        'File upload failed.'
+      );
+    } finally {
+      setUploading(false);
+      setProgress(0);
+      if (inputRef.current) inputRef.current.value = '';
+    }
+  }
+
+  async function downloadFile(file) {
+    setError('');
+
+    try {
+      const { data } = await api.get(
+        `/files/${file.id}/download`
+      );
+
+      window.open(
+        data.url,
+        '_blank',
+        'noopener,noreferrer'
+      );
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+        'Could not create download link.'
+      );
+    }
+  }
+
+  async function deleteFile(file) {
+    if (!window.confirm(`Delete "${file.originalName}"?`)) {
+      return;
+    }
+
+    setDeletingId(file.id);
+    setError('');
+    setMessage('');
+
+    try {
+      const { data } = await api.delete(
+        `/files/${file.id}`
+      );
+
+      setMessage(data.message);
+      await loadFiles();
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+        'Could not delete file.'
+      );
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
+  return (
+    <div className="app-shell">
+      <aside className="sidebar">
+        <div className="brand">
+          <span><Cloud size={21} /></span>
+          <div>
+            <b>VaultDrop</b>
+            <small>Storage Console</small>
+          </div>
+        </div>
+
+        <nav>
+          <button className="active">
+            <FolderOpen size={18} /> File manager
+          </button>
+          <button disabled>
+            <ShieldCheck size={18} /> Security
+          </button>
+          <button disabled>
+            <HardDrive size={18} /> Storage usage
+          </button>
+        </nav>
+
+        <div className="private-card">
+          <LockKeyhole size={19} />
+          <b>Private Storage</b>
+          <p>
+            Downloads use temporary signed URLs generated by
+            the trusted Node.js backend.
+          </p>
+          <span>
+            <CheckCircle2 size={15} /> Supabase connected
+          </span>
+        </div>
+
+        <div className="task">
+          TASK 17
+          <strong>Upload files to Supabase Storage</strong>
+        </div>
+      </aside>
+
+      <main>
+        <header>
+          <div>
+            <div className="eyebrow">STORAGE OPERATIONS</div>
+            <h1>
+              File management,
+              <em> without the clutter.</em>
+            </h1>
+            <p>
+              Upload through Express, store in Supabase Storage,
+              synchronize metadata, and create signed downloads.
+            </p>
+          </div>
+
+          <button
+            className="primary compact"
+            disabled={uploading}
+            onClick={() => inputRef.current?.click()}
+          >
+            <UploadCloud size={18} />
+            Upload file
+          </button>
+        </header>
+
+        <section className="stats">
+          <article>
+            <FolderOpen size={20} />
+            <div>
+              <small>TOTAL FILES</small>
+              <b>{stats.totalFiles || 0}</b>
+            </div>
+          </article>
+          <article>
+            <HardDrive size={20} />
+            <div>
+              <small>STORAGE USED</small>
+              <b>{formatBytes(stats.totalBytes || 0)}</b>
+            </div>
+          </article>
+          <article>
+            <FileImage size={20} />
+            <div>
+              <small>IMAGES</small>
+              <b>{stats.imageFiles || 0}</b>
+            </div>
+          </article>
+          <article>
+            <FileText size={20} />
+            <div>
+              <small>DOCUMENTS</small>
+              <b>{stats.documentFiles || 0}</b>
+            </div>
+          </article>
+        </section>
+
+        <section
+          className={`dropzone ${dragging ? 'dragging' : ''}`}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDragging(true);
+          }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setDragging(false);
+            uploadFile(e.dataTransfer.files?.[0]);
+          }}
+        >
+          <input
+            ref={inputRef}
+            hidden
+            type="file"
+            onChange={(e) =>
+              uploadFile(e.target.files?.[0])
+            }
+          />
+
+          <div className="upload-icon">
+            <CloudUpload size={34} />
+          </div>
+
+          <h2>
+            {uploading
+              ? 'Uploading to Supabase…'
+              : 'Drop a file here'}
+          </h2>
+
+          <p>
+            {uploading
+              ? `${progress}% transferred`
+              : 'or choose one file from your computer'}
+          </p>
+
+          {!uploading && (
+            <button
+              className="secondary"
+              onClick={() => inputRef.current?.click()}
+            >
+              Browse files
+            </button>
+          )}
+
+          {uploading && (
+            <div className="progress">
+              <div style={{ width: `${progress}%` }} />
+            </div>
+          )}
+
+          <small>
+            10 MB default maximum · basic dangerous-file blocking
+          </small>
+        </section>
+
+        {message && (
+          <div className="notice success">
+            <CheckCircle2 size={18} /> {message}
+          </div>
+        )}
+
+        {error && (
+          <div className="notice error">
+            <ShieldCheck size={18} /> {error}
+          </div>
+        )}
+
+        <section className="file-panel">
+          <div className="panel-head">
+            <div>
+              <div className="eyebrow">STORAGE INVENTORY</div>
+              <h2>Uploaded files</h2>
+            </div>
+
+            <div className="panel-actions">
+              <label>
+                <Search size={17} />
+                <input
+                  placeholder="Search files"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </label>
+              <button
+                className="icon-button"
+                onClick={loadFiles}
+              >
+                <RefreshCcw size={17} />
+              </button>
+            </div>
+          </div>
+
+          {loading ? (
+            <div className="empty">
+              <LoaderCircle className="spin" size={31} />
+              <h3>Loading storage inventory</h3>
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="empty">
+              <Sparkles size={31} />
+              <h3>
+                {query
+                  ? 'No matching files'
+                  : 'Your storage is ready'}
+              </h3>
+              <p>
+                {query
+                  ? 'Try another search.'
+                  : 'Upload your first file.'}
+              </p>
+            </div>
+          ) : (
+            <div className="file-list">
+              {filtered.map((file) => (
+                <article className="file-row" key={file.id}>
+                  <span className="file-icon">
+                    {iconFor(file.mimeType)}
+                  </span>
+
+                  <div className="file-name">
+                    <b>{file.originalName}</b>
+                    <small>{file.mimeType}</small>
+                  </div>
+
+                  <div className="file-meta">
+                    <span>{formatBytes(file.sizeBytes)}</span>
+                    <small>
+                      {new Date(file.createdAt).toLocaleString()}
+                    </small>
+                  </div>
+
+                  <div className="file-actions">
+                    <button
+                      title="Download"
+                      onClick={() => downloadFile(file)}
+                    >
+                      <ArrowDownToLine size={17} />
+                    </button>
+                    <button
+                      className="danger"
+                      title="Delete"
+                      disabled={deletingId === file.id}
+                      onClick={() => deleteFile(file)}
+                    >
+                      {deletingId === file.id
+                        ? <LoaderCircle className="spin" size={17} />
+                        : <Trash2 size={17} />}
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
+  );
+}
