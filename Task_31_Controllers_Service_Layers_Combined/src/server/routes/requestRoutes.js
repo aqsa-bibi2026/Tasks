@@ -1,0 +1,12 @@
+import {Router} from 'express';
+import {requestController} from '../controllers/requestController.js';
+import {requireAuth} from '../middleware/authMiddleware.js';
+import {asyncHandler} from '../utils/asyncHandler.js';
+const router=Router();router.use(requireAuth);
+router.get('/dashboard',asyncHandler(requestController.dashboard));
+router.get('/requests',asyncHandler(requestController.list));
+router.get('/requests/:id',asyncHandler(requestController.get));
+router.post('/requests',asyncHandler(requestController.create));
+router.patch('/requests/:id',asyncHandler(requestController.update));
+router.delete('/requests/:id',asyncHandler(requestController.remove));
+export default router;

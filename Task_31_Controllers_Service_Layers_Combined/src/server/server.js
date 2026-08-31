@@ -1,0 +1,2 @@
+import app from './app.js';import {env} from './config/env.js';import {checkDatabase} from './config/db.js';import {ensureDemoData} from './seed.js';
+app.listen(env.port,async()=>{console.log(`Task 31 backend: http://localhost:${env.port}`);try{await checkDatabase();console.log('SUPABASE CHECK: OK');await ensureDemoData();console.log('DEMO ADMIN: READY');console.log('SERVICE REQUEST SEED: READY')}catch(e){console.error('STARTUP CHECK FAILED:',e.message)}});
