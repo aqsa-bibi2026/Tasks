@@ -1,0 +1,15 @@
+{
+  "name": "task36-luxury-swagger-api",
+  "version": "2.0.0",
+  "description": "Professional Swagger API Documentation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
