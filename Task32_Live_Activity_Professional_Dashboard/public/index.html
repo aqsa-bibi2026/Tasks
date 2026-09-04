@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pulseboard | Live Activity</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top"><strong><b>P</b> pulseboard</strong><span>Admin workspace <i>JD</i></span></div>
+<div class="layout">
+<div class="side">
+<small class="section-label">Workspace</small>
+<button class="active" data-page="overview" onclick="show('overview')">▦ <span>Overview</span></button>
+<button data-page="activity" onclick="show('activity')">◷ <span>Activity Log</span></button>
+<button data-page="users" onclick="show('users')">♙ <span>Users</span></button>
+<button data-page="settings" onclick="show('settings')">⚙ <span>Settings</span></button>
+<div class="side-status"><i></i><span><b>Systems operational</b><small>All services running</small></span></div>
+</div>
+
+<div class="main" id="app"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
