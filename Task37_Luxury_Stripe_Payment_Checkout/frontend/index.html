@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>PayFlow Enterprise</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <h2>
+        PayFlow <span>Enterprise</span>
+    </h2>
+
+    <div>
+        Dashboard | Payments | Account
+    </div>
+
+</nav>
+
+
+
+
+<section class="hero">
+
+
+    <h1>
+        Secure Business Payments
+    </h1>
+
+
+    <p>
+        Enterprise payment solution powered by Stripe
+    </p>
+
+
+
+
+    <div class="checkout">
+
+
+        <h2>
+            Premium Business Plan
+        </h2>
+
+
+        <h1>
+            $99
+            <span>/Month</span>
+        </h1>
+
+
+
+        <div class="grid">
+
+
+            <div>
+                ✓ Stripe Secured
+            </div>
+
+
+            <div>
+                ✓ Instant Invoice
+            </div>
+
+
+            <div>
+                ✓ Analytics Dashboard
+            </div>
+
+
+            <div>
+                ✓ Priority Support
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <input 
+        type="text"
+        id="name"
+        placeholder="Full Name"
+        />
+
+
+
+        <input 
+        type="email"
+        id="email"
+        placeholder="Business Email"
+        />
+
+
+
+
+
+        <button onclick="makePayment()">
+
+            Pay Securely
+
+        </button>
+
+
+
+
+
+        <p class="safe">
+
+            🔒 PCI DSS Compliant | Stripe Verified
+
+        </p>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<script>
+
+
+async function makePayment(){
+
+
+    const name = document.getElementById("name").value;
+
+    const email = document.getElementById("email").value;
+
+
+
+    if(name === "" || email === ""){
+
+
+        alert("Please enter name and email");
+
+        return;
+
+    }
+
+
+
+
+
+    try{
+
+
+        const response = await fetch(
+
+            "http://localhost:5000/api/v1/payment/create-checkout",
+
+            {
+
+
+                method:"POST",
+
+
+                headers:{
+
+
+                    "Content-Type":"application/json"
+
+
+                },
+
+
+                body:JSON.stringify({
+
+                    name:name,
+
+                    email:email
+
+                })
+
+
+            }
+
+
+        );
+
+
+
+
+
+        const data = await response.json();
+
+
+
+
+
+        console.log(data);
+
+
+
+
+        if(data.success){
+
+
+            alert(
+                "Payment Checkout Created Successfully"
+            );
+
+
+            console.log(
+                "Stripe URL:",
+                data.checkoutUrl
+            );
+
+
+        }
+
+        else{
+
+
+            alert(
+                "Payment creation failed"
+            );
+
+
+        }
+
+
+
+
+
+    }
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert(
+            "Backend Server Not Connected"
+        );
+
+
+    }
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+
+</html>

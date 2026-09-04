@@ -1,0 +1,11 @@
+{
+  "name":"task37-luxury-stripe-payment",
+  "version":"1.0.0",
+  "scripts":{"start":"node server.js"},
+  "dependencies":{
+    "express":"^5.0.0",
+    "cors":"^2.8.5",
+    "stripe":"^18.0.0",
+    "dotenv":"^16.4.5"
+  }
+}
