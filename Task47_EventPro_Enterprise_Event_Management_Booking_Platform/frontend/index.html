@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>EventPro Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>EventPro <span>Enterprise</span></h2>
+<div>Dashboard | Events | Tickets | Bookings | Reports</div>
+</nav>
+
+<section>
+
+<h1>AI Event Management Platform</h1>
+<p>Create, manage and book premium events easily</p>
+
+<div class="cards">
+<div class="card"><h3>Total Events</h3><h2>320</h2></div>
+<div class="card"><h3>Total Bookings</h3><h2>5400</h2></div>
+<div class="card"><h3>Revenue</h3><h2>$85K</h2></div>
+</div>
+
+<div class="box">
+<h2>Create Event</h2>
+
+<input id="name" placeholder="Event Name">
+<input id="category" placeholder="Category">
+<input id="date" placeholder="Event Date">
+
+<button onclick="addEvent()">Create Event</button>
+
+<p id="msg"></p>
+
+</div>
+
+</section>
+
+<script>
+async function addEvent(){
+
+await fetch("http://localhost:5000/api/events",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+name:name.value,
+category:category.value,
+date:date.value
+})
+});
+
+msg.innerHTML="✅ Event Created Successfully";
+
+}
+</script>
+
+</body>
+</html>
