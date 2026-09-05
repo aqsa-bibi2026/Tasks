@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>FleetFlow Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>FleetFlow <span>Enterprise</span></h2>
+<div>Dashboard | Vehicles | Drivers | Trips | Reports</div>
+</nav>
+
+<section>
+
+<h1>Smart Fleet Management Platform</h1>
+<p>Enterprise vehicle and transportation management solution</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Vehicles</h3>
+<h2>320</h2>
+</div>
+
+<div class="card">
+<h3>Active Drivers</h3>
+<h2>185</h2>
+</div>
+
+<div class="card">
+<h3>Maintenance Alerts</h3>
+<h2>12</h2>
+</div>
+
+</div>
+
+<div class="box">
+<h2>Add Vehicle</h2>
+
+<input id="model" placeholder="Vehicle Model">
+<input id="driver" placeholder="Driver Name">
+<input id="number" placeholder="Vehicle Number">
+
+<button onclick="addVehicle()">Add Vehicle</button>
+
+<p id="msg"></p>
+</div>
+
+</section>
+
+<script>
+
+async function addVehicle(){
+
+const res = await fetch(
+"http://localhost:5000/api/vehicles",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+model:document.getElementById("model").value,
+driver:document.getElementById("driver").value,
+number:document.getElementById("number").value
+})
+});
+
+const data = await res.json();
+
+document.getElementById("msg").innerHTML =
+"✅ Vehicle Added Successfully";
+
+console.log(data);
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter","Segoe UI",Arial,sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(135deg,#020617,#0f172a,#1e293b);
+
+    color:white;
+
+}
+
+
+
+/* NAVBAR */
+
+nav{
+
+    padding:22px 8%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:
+    rgba(15,23,42,.85);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.1);
+
+    backdrop-filter:blur(15px);
+
+}
+
+
+nav h2{
+
+    font-size:30px;
+
+    font-weight:800;
+
+}
+
+
+nav span{
+
+    color:#38bdf8;
+
+}
+
+
+nav div{
+
+    color:#cbd5e1;
+
+    font-size:15px;
+
+}
+
+
+
+/* HERO */
+
+section{
+
+    padding:70px 8%;
+
+    text-align:center;
+
+}
+
+
+section h1{
+
+    font-size:50px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+}
+
+
+section p{
+
+    margin-top:15px;
+
+    color:#94a3b8;
+
+    font-size:19px;
+
+}
+
+
+
+/* VEHICLE CARDS */
+
+.cards{
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+    max-width:1000px;
+
+}
+
+
+
+.card{
+
+
+    background:
+
+    linear-gradient(
+    145deg,
+    rgba(56,189,248,.15),
+    rgba(15,23,42,.8)
+    );
+
+
+    padding:35px;
+
+
+    border-radius:25px;
+
+
+    border:
+
+    1px solid rgba(56,189,248,.25);
+
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.5);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#38bdf8;
+
+}
+
+
+
+.card h3{
+
+    color:#7dd3fc;
+
+    font-size:18px;
+
+}
+
+
+.card h2{
+
+    margin-top:15px;
+
+    font-size:40px;
+
+    color:white;
+
+}
+
+
+
+
+
+/* ADD VEHICLE PANEL */
+
+
+.box{
+
+
+    max-width:500px;
+
+
+    margin:40px auto;
+
+
+    padding:40px;
+
+
+    background:
+
+    rgba(255,255,255,.95);
+
+
+    color:#0f172a;
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+
+    0 30px 80px rgba(0,0,0,.6);
+
+
+}
+
+
+
+.box h2{
+
+    font-size:30px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+
+
+input{
+
+
+    width:100%;
+
+
+    padding:17px;
+
+
+    margin:10px 0;
+
+
+    border-radius:14px;
+
+
+    border:1px solid #cbd5e1;
+
+
+    font-size:16px;
+
+
+    outline:none;
+
+
+}
+
+
+
+input:focus{
+
+
+    border-color:#0284c7;
+
+
+    box-shadow:
+
+    0 0 0 4px rgba(14,165,233,.2);
+
+
+}
+
+
+
+
+
+button{
+
+
+    width:100%;
+
+
+    padding:18px;
+
+
+    margin-top:20px;
+
+
+    border:none;
+
+
+    border-radius:15px;
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #0284c7,
+    #38bdf8
+    );
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+button:hover{
+
+
+    transform:scale(1.04);
+
+
+    box-shadow:
+
+    0 15px 40px rgba(56,189,248,.5);
+
+
+}
+
+
+
+
+#msg{
+
+
+    margin-top:20px;
+
+    color:#059669;
+
+    font-weight:700;
+
+}
+
+
+
+
+
+/* MOBILE RESPONSIVE */
+
+
+@media(max-width:900px){
+
+
+nav{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+section h1{
+
+    font-size:34px;
+
+}
+
+
+
+}
