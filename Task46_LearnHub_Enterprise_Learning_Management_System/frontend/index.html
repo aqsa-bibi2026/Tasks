@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>LearnHub Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>LearnHub <span>Enterprise</span></h2>
+<div>Dashboard | Courses | Students | Instructors | Certificates</div>
+</nav>
+
+<section>
+<h1>AI Learning Management Platform</h1>
+<p>Enterprise education solution for modern learning organizations</p>
+
+<div class="cards">
+<div class="card"><h3>Total Students</h3><h2>8,500</h2></div>
+<div class="card"><h3>Active Courses</h3><h2>240</h2></div>
+<div class="card"><h3>Certificates</h3><h2>3,200</h2></div>
+</div>
+
+<div class="box">
+<h2>Add Course</h2>
+<input id="name" placeholder="Course Name">
+<input id="instructor" placeholder="Instructor Name">
+<input id="category" placeholder="Category">
+
+<button onclick="addCourse()">Add Course</button>
+<p id="msg"></p>
+</div>
+
+</section>
+
+<script>
+async function addCourse(){
+await fetch("http://localhost:5000/api/courses",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:name.value,
+instructor:instructor.value,
+category:category.value
+})
+});
+msg.innerHTML="✅ Course Added Successfully";
+}
+</script>
+
+</body>
+</html>
