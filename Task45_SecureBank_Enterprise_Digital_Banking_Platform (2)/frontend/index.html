@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>SecureBank Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>SecureBank <span>Enterprise</span></h2>
+<div>Dashboard | Accounts | Transactions | Loans | Reports</div>
+</nav>
+
+<section>
+<h1>AI Digital Banking Platform</h1>
+<p>Premium financial management solution for modern businesses</p>
+
+<div class="cards">
+<div class="card"><h3>Total Customers</h3><h2>12,500</h2></div>
+<div class="card"><h3>Active Accounts</h3><h2>8,900</h2></div>
+<div class="card"><h3>Transactions</h3><h2>$2.5M</h2></div>
+</div>
+
+<div class="box">
+<h2>Create Account</h2>
+<input id="name" placeholder="Customer Name">
+<input id="type" placeholder="Account Type">
+<input id="amount" placeholder="Initial Balance">
+
+<button onclick="createAccount()">Create Account</button>
+<p id="msg"></p>
+</div>
+
+</section>
+
+<script>
+async function createAccount(){
+await fetch("http://localhost:5000/api/accounts",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:name.value,
+type:type.value,
+amount:amount.value
+})
+});
+
+msg.innerHTML="✅ Account Created Successfully";
+}
+</script>
+
+</body>
+</html>
