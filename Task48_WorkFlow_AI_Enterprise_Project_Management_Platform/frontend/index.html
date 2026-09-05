@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>WorkFlow AI Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>WorkFlow <span>AI</span></h2>
+<div>Dashboard | Projects | Tasks | Teams | Reports</div>
+</nav>
+
+<section>
+
+<h1>Intelligent Business Project Management</h1>
+<p>Manage projects, teams and productivity in one enterprise platform</p>
+
+<div class="cards">
+<div class="card"><h3>Active Projects</h3><h2>86</h2></div>
+<div class="card"><h3>Total Tasks</h3><h2>2450</h2></div>
+<div class="card"><h3>Team Members</h3><h2>320</h2></div>
+</div>
+
+<div class="box">
+<h2>Create Task</h2>
+
+<input id="title" placeholder="Task Title">
+<input id="priority" placeholder="Priority">
+<input id="status" placeholder="Status">
+
+<button onclick="addTask()">Create Task</button>
+
+<p id="msg"></p>
+</div>
+
+</section>
+
+<script>
+async function addTask(){
+
+await fetch("http://localhost:5000/api/tasks",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+title:title.value,
+priority:priority.value,
+status:status.value
+})
+});
+
+msg.innerHTML="✅ Task Created Successfully";
+
+}
+</script>
+
+</body>
+</html>
