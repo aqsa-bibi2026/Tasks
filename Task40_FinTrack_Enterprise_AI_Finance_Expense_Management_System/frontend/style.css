@@ -1,0 +1,403 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter", "Segoe UI", Arial, sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(135deg,#06131f,#065f46,#0f766e);
+
+    color:white;
+
+}
+
+
+
+/* NAVBAR */
+
+nav{
+
+    width:100%;
+
+    padding:22px 8%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+
+nav h2{
+
+    font-size:30px;
+
+    font-weight:800;
+
+}
+
+
+nav span{
+
+    color:#5eead4;
+
+}
+
+
+nav div{
+
+    font-size:16px;
+
+    color:#d1fae5;
+
+}
+
+
+
+
+
+/* MAIN SECTION */
+
+
+section{
+
+    padding:70px 8%;
+
+    text-align:center;
+
+}
+
+
+section h1{
+
+    font-size:48px;
+
+    font-weight:900;
+
+    margin-bottom:15px;
+
+}
+
+
+
+section p{
+
+    color:#ccfbf1;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+/* FINANCE CARDS */
+
+
+.cards{
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+    max-width:1000px;
+
+}
+
+
+
+.card{
+
+
+    background:
+    rgba(255,255,255,.12);
+
+
+    backdrop-filter:
+    blur(20px);
+
+
+    padding:35px;
+
+
+    border-radius:25px;
+
+
+    border:
+    1px solid rgba(255,255,255,.2);
+
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.25);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+
+.card h3{
+
+    color:#99f6e4;
+
+    font-size:18px;
+
+}
+
+
+.card h2{
+
+    margin-top:15px;
+
+    font-size:38px;
+
+}
+
+
+
+
+
+/* EXPENSE FORM */
+
+
+.box{
+
+
+    max-width:520px;
+
+
+    margin:50px auto;
+
+
+    background:white;
+
+
+    color:#111827;
+
+
+    padding:40px;
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+
+    0 30px 80px rgba(0,0,0,.35);
+
+
+}
+
+
+
+
+.box h2{
+
+    font-size:30px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+
+input{
+
+
+    width:100%;
+
+
+    padding:17px;
+
+
+    margin:10px 0;
+
+
+    border-radius:15px;
+
+
+    border:1px solid #d1d5db;
+
+
+    font-size:16px;
+
+
+    outline:none;
+
+
+}
+
+
+
+input:focus{
+
+
+    border-color:#0f766e;
+
+
+    box-shadow:
+
+    0 0 0 4px rgba(15,118,110,.15);
+
+
+}
+
+
+
+
+
+button{
+
+
+    width:100%;
+
+
+    margin-top:20px;
+
+
+    padding:18px;
+
+
+    border:none;
+
+
+    border-radius:15px;
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #0f766e,
+    #14b8a6
+    );
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+button:hover{
+
+
+    transform:scale(1.04);
+
+
+    box-shadow:
+
+    0 15px 35px rgba(20,184,166,.4);
+
+
+}
+
+
+
+
+
+#message{
+
+
+    margin-top:20px;
+
+
+    font-weight:700;
+
+
+    color:#059669;
+
+
+}
+
+
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:900px){
+
+
+nav{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+section h1{
+
+    font-size:34px;
+
+}
+
+
+
+.box{
+
+    padding:25px;
+
+}
+
+
+}

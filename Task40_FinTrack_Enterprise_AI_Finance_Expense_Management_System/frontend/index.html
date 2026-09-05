@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>FinTrack Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<h2>FinTrack <span>Enterprise</span></h2>
+<div>Dashboard | Expenses | Invoices | Reports</div>
+</nav>
+
+<section>
+
+<h1>AI Finance & Expense Management</h1>
+<p>Enterprise financial control platform for modern businesses</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Revenue</h3>
+<h2>$125,000</h2>
+</div>
+
+<div class="card">
+<h3>Total Expenses</h3>
+<h2>$42,500</h2>
+</div>
+
+<div class="card">
+<h3>Pending Approvals</h3>
+<h2>18</h2>
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h2>Add Expense</h2>
+
+<input id="title" placeholder="Expense Title">
+
+<input id="amount" placeholder="Amount">
+
+<input id="category" placeholder="Category">
+
+
+<button onclick="addExpense()">
+Submit Expense
+</button>
+
+<p id="message"></p>
+
+</div>
+
+</section>
+
+
+<script>
+
+async function addExpense(){
+
+const response = await fetch(
+"http://localhost:5000/api/expenses",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+
+title:document.getElementById("title").value,
+amount:document.getElementById("amount").value,
+category:document.getElementById("category").value
+
+})
+});
+
+const data = await response.json();
+
+document.getElementById("message").innerHTML =
+"✅ Expense Added Successfully";
+
+console.log(data);
+
+}
+
+</script>
+
+</body>
+</html>
