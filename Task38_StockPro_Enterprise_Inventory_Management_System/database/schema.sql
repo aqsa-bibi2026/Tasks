@@ -1,0 +1,2 @@
+CREATE TABLE products(id SERIAL PRIMARY KEY,name VARCHAR(100),category VARCHAR(100),quantity INT,price DECIMAL(10,2));
+CREATE TABLE inventory_logs(id SERIAL PRIMARY KEY,product_id INT,action VARCHAR(50));

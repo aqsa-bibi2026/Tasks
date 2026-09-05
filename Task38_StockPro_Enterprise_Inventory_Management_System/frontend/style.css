@@ -1,0 +1,425 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",Arial,sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #07111f,
+        #1d4ed8
+    );
+
+    color:white;
+
+}
+
+
+
+/* NAVBAR */
+
+nav{
+
+    width:100%;
+
+    padding:22px 8%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.15);
+
+}
+
+
+
+nav h2{
+
+    font-size:30px;
+
+    font-weight:800;
+
+}
+
+
+
+nav span{
+
+    color:#60a5fa;
+
+}
+
+
+
+nav div{
+
+    font-size:16px;
+
+    opacity:.9;
+
+}
+
+
+
+
+
+
+/* HERO SECTION */
+
+
+section{
+
+    padding:70px 8%;
+
+    text-align:center;
+
+}
+
+
+
+section h1{
+
+    font-size:48px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+
+
+section p{
+
+    font-size:18px;
+
+    color:#dbeafe;
+
+}
+
+
+
+
+
+/* DASHBOARD CARDS */
+
+
+.cards{
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+    max-width:1000px;
+
+}
+
+
+
+.card{
+
+
+    background:
+    rgba(255,255,255,.12);
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    padding:35px;
+
+
+    border-radius:25px;
+
+
+    border:
+    1px solid rgba(255,255,255,.2);
+
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.card h3{
+
+    color:#bfdbfe;
+
+    font-size:18px;
+
+}
+
+
+
+.card h2{
+
+    margin-top:15px;
+
+    font-size:38px;
+
+    color:white;
+
+}
+
+
+
+
+
+
+
+/* ADD PRODUCT BOX */
+
+
+.box{
+
+
+    max-width:500px;
+
+
+    margin:40px auto;
+
+
+    padding:40px;
+
+
+    background:white;
+
+
+    color:#111827;
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+
+    0 30px 70px rgba(0,0,0,.35);
+
+
+}
+
+
+
+.box h2{
+
+
+    font-size:28px;
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+
+input{
+
+
+    width:100%;
+
+
+    padding:16px;
+
+
+    margin:10px 0;
+
+
+    border-radius:14px;
+
+
+    border:
+
+    1px solid #d1d5db;
+
+
+    outline:none;
+
+
+    font-size:16px;
+
+
+}
+
+
+
+input:focus{
+
+
+    border-color:#2563eb;
+
+
+    box-shadow:
+
+    0 0 0 3px rgba(37,99,235,.15);
+
+
+}
+
+
+
+
+
+button{
+
+
+    width:100%;
+
+
+    margin-top:15px;
+
+
+    padding:17px;
+
+
+    border:none;
+
+
+    border-radius:15px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1e40af
+    );
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+button:hover{
+
+
+    transform:scale(1.03);
+
+
+    box-shadow:
+
+    0 15px 30px rgba(37,99,235,.4);
+
+
+}
+
+
+
+
+
+#message{
+
+
+    margin-top:20px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+
+
+/* RESPONSIVE MOBILE */
+
+
+@media(max-width:900px){
+
+
+nav{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+.cards{
+
+
+    grid-template-columns:1fr;
+
+
+}
+
+
+
+section h1{
+
+    font-size:35px;
+
+}
+
+
+
+.box{
+
+    padding:25px;
+
+}
+
+
+
+}
