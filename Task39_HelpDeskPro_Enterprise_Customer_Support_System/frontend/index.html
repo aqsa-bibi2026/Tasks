@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>HelpDesk Pro Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>HelpDesk <span>Pro</span></h2>
+<div>Dashboard | Tickets | Agents | Reports</div>
+</nav>
+
+<section>
+<h1>AI Customer Support Platform</h1>
+<p>Enterprise ticket management solution for modern businesses</p>
+
+<div class="cards">
+<div class="card">
+<h3>Total Tickets</h3>
+<h2>1,240</h2>
+</div>
+
+<div class="card">
+<h3>Open Tickets</h3>
+<h2>86</h2>
+</div>
+
+<div class="card">
+<h3>Resolved</h3>
+<h2>1,154</h2>
+</div>
+</div>
+
+
+<div class="ticket-box">
+<h2>Create Support Ticket</h2>
+
+<input id="title" placeholder="Issue Title">
+<input id="customer" placeholder="Customer Name">
+<select id="priority">
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+
+<button onclick="createTicket()">Submit Ticket</button>
+
+<p id="msg"></p>
+</div>
+
+</section>
+
+
+<script>
+
+async function createTicket(){
+
+const response = await fetch(
+"http://localhost:5000/api/tickets",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+title:document.getElementById("title").value,
+customer:document.getElementById("customer").value,
+priority:document.getElementById("priority").value
+})
+});
+
+const data = await response.json();
+
+document.getElementById("msg").innerHTML =
+"✅ Ticket Created Successfully";
+
+console.log(data);
+
+}
+
+</script>
+
+</body>
+</html>
