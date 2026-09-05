@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>SmartHR Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>SmartHR <span>Enterprise</span></h2>
+<div>Dashboard | Employees | Attendance | Payroll</div>
+</nav>
+
+<section>
+
+<h1>AI Employee Management Platform</h1>
+<p>Enterprise HR automation solution for modern organizations</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Employees</h3>
+<h2>850</h2>
+</div>
+
+<div class="card">
+<h3>Present Today</h3>
+<h2>790</h2>
+</div>
+
+<div class="card">
+<h3>Pending Leaves</h3>
+<h2>35</h2>
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h2>Add Employee</h2>
+
+<input id="name" placeholder="Employee Name">
+
+<input id="department" placeholder="Department">
+
+<input id="role" placeholder="Job Role">
+
+<button onclick="addEmployee()">Add Employee</button>
+
+<p id="msg"></p>
+
+</div>
+
+</section>
+
+
+<script>
+
+async function addEmployee(){
+
+const response = await fetch(
+"http://localhost:5000/api/employees",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+name:document.getElementById("name").value,
+department:document.getElementById("department").value,
+role:document.getElementById("role").value
+})
+});
+
+const data=await response.json();
+
+document.getElementById("msg").innerHTML =
+"✅ Employee Added Successfully";
+
+console.log(data);
+
+}
+
+</script>
+
+</body>
+</html>
