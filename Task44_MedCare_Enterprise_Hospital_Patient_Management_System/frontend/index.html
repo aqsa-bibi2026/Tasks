@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><title>MedCare Enterprise</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<nav><h2>MedCare <span>Enterprise</span></h2><div>Dashboard | Patients | Doctors | Appointments | Billing</div></nav>
+<section>
+<h1>AI Hospital Management Platform</h1>
+<p>Enterprise healthcare solution for modern hospitals</p>
+<div class="cards">
+<div class="card"><h3>Total Patients</h3><h2>5240</h2></div>
+<div class="card"><h3>Doctors</h3><h2>180</h2></div>
+<div class="card"><h3>Appointments</h3><h2>320</h2></div>
+</div>
+<div class="box">
+<h2>Add Patient</h2>
+<input id="name" placeholder="Patient Name">
+<input id="age" placeholder="Age">
+<input id="issue" placeholder="Medical Issue">
+<button onclick="addPatient()">Add Patient</button>
+<p id="msg"></p>
+</div>
+</section>
+<script>
+async function addPatient(){
+await fetch("http://localhost:5000/api/patients",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name.value,age:age.value,issue:issue.value})});
+msg.innerHTML="✅ Patient Added Successfully";
+}
+</script>
+</body></html>
