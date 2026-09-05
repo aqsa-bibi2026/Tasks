@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>ShopSphere Enterprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+<h2>ShopSphere <span>Enterprise</span></h2>
+<div>Dashboard | Products | Orders | Customers | Reports</div>
+</nav>
+
+<section>
+<h1>AI E-Commerce Management Platform</h1>
+<p>Enterprise online store management solution</p>
+
+<div class="cards">
+<div class="card"><h3>Total Products</h3><h2>2500</h2></div>
+<div class="card"><h3>Orders Today</h3><h2>340</h2></div>
+<div class="card"><h3>Revenue</h3><h2>$75,000</h2></div>
+</div>
+
+<div class="box">
+<h2>Add Product</h2>
+<input id="name" placeholder="Product Name">
+<input id="category" placeholder="Category">
+<input id="price" placeholder="Price">
+
+<button onclick="addProduct()">Add Product</button>
+<p id="msg"></p>
+</div>
+
+</section>
+
+<script>
+async function addProduct(){
+
+let res = await fetch("http://localhost:5000/api/products",
+{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:document.getElementById("name").value,
+category:document.getElementById("category").value,
+price:document.getElementById("price").value
+})
+});
+
+let data=await res.json();
+
+document.getElementById("msg").innerHTML=
+"✅ Product Added Successfully";
+
+console.log(data);
+}
+</script>
+
+</body>
+</html>
