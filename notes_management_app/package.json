@@ -1,0 +1,9 @@
+{
+ "name":"notes-management-app",
+ "scripts":{"dev":"vite --host 0.0.0.0","build":"vite build"},
+ "dependencies":{
+  "react":"latest",
+  "react-dom":"latest",
+  "vite":"latest"
+ }
+}
