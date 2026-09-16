@@ -1,0 +1,12 @@
+{
+  "name":"weather-dashboard",
+  "scripts":{
+    "dev":"vite --host 0.0.0.0"
+  },
+  "dependencies":{
+    "axios":"latest",
+    "react":"latest",
+    "react-dom":"latest",
+    "vite":"latest"
+  }
+}
