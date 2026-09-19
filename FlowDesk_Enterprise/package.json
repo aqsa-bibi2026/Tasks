@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "build": "npm --prefix frontend run build",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "latest"
+  }
+}
