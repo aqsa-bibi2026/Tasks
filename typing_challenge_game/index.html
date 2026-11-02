@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="A polished, responsive typing challenge game with Bubbles and KeyMagnet modes.">
+  <title>KeyRush — Typing Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="KeyRush home" id="brandHome">
+      <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+      <span>key<span class="brand-accent">rush</span></span>
+    </a>
+    <div class="topbar-right">
+      <span class="status-pill"><i></i> OFFLINE READY</span>
+      <button class="icon-button" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">♫</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section id="homeScreen" class="screen active">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> THE KEYBOARD ARCADE <span class="eyebrow-line"></span></div>
+        <h1>Make every<br><span>keystroke count.</span></h1>
+        <p class="hero-description">Sharpen your reflexes, build keyboard confidence, and chase your next high score.</p>
+        <div class="hero-meta"><span>✦ 2 GAME MODES</span><span>◷ QUICK SESSIONS</span><span>⌘ ALL SKILL LEVELS</span></div>
+      </div>
+
+      <div class="section-heading">
+        <div><span class="section-kicker">CHOOSE YOUR CHALLENGE</span><h2>Pick a game mode</h2></div>
+        <span class="mode-count">01 — 02</span>
+      </div>
+      <div class="mode-grid">
+        <article class="mode-card bubbles-card">
+          <div class="card-topline"><span class="mode-tag"><span class="tag-dot"></span> MODE 01</span><span class="card-icon">◉</span></div>
+          <div class="illustration bubble-illustration" aria-hidden="true">
+            <span class="demo-bubble b-one">A</span><span class="demo-bubble b-two">K</span><span class="demo-bubble b-three">S</span><span class="demo-bubble b-four">D</span><span class="demo-bubble b-five">J</span>
+            <span class="illustration-glow"></span>
+          </div>
+          <h3>Bubbles</h3>
+          <p>Pop the rising letters before they escape. Stay sharp, keep your streak alive, and don't let the bubbles reach the top.</p>
+          <div class="card-features"><span>LETTER RECOGNITION</span><span>REFLEXES</span></div>
+          <button class="primary-button mode-launch" data-mode="bubbles">Play Bubbles <span>↗</span></button>
+        </article>
+        <article class="mode-card magnet-card">
+          <div class="card-topline"><span class="mode-tag"><span class="tag-dot"></span> MODE 02</span><span class="card-icon">⌨</span></div>
+          <div class="illustration keyboard-illustration" aria-hidden="true">
+            <div class="key-row"><span>A</span><span>S</span><span>D</span><span>F</span></div>
+            <div class="key-row offset"><span>J</span><span>K</span><span class="key-lit">L</span></div>
+            <div class="target-preview">L</div>
+            <span class="key-spark spark-one">✦</span><span class="key-spark spark-two">✧</span>
+          </div>
+          <h3>KeyMagnet</h3>
+          <p>Lock onto the target key and strike with precision. Train your accuracy and improve your response time.</p>
+          <div class="card-features"><span>KEYBOARD PRECISION</span><span>REACTION TIME</span></div>
+          <button class="primary-button mode-launch" data-mode="magnet">Play KeyMagnet <span>↗</span></button>
+        </article>
+      </div>
+      <footer class="home-footer"><span>KEYRUSH ARCADE</span><span>BUILT FOR BETTER TYPING <b>✦</b></span><span>HTML · CSS · JAVASCRIPT</span></footer>
+    </section>
+
+    <section id="setupScreen" class="screen">
+      <button class="back-button" id="backHome">← <span>Back to modes</span></button>
+      <div class="setup-layout">
+        <div class="setup-intro">
+          <span class="section-kicker">GET READY</span>
+          <h1 id="setupTitle">Bubbles<span>.</span></h1>
+          <p id="setupDescription">Pop the letters before they float away. Every correct keypress earns points.</p>
+          <div class="setup-tip"><span>✦</span><div><b>Quick tip</b><small id="setupTip">Keep your eyes moving and focus on the lowest bubbles first.</small></div></div>
+        </div>
+        <div class="setup-panel">
+          <div class="setup-panel-heading"><span>SESSION SETTINGS</span><span class="setup-step">01 / 02</span></div>
+          <label class="field-label">DIFFICULTY</label>
+          <div class="difficulty-options" id="difficultyOptions">
+            <button class="difficulty-option selected" data-difficulty="easy"><b>Easy</b><small>Warm up</small></button>
+            <button class="difficulty-option" data-difficulty="medium"><b>Medium</b><small>Focused</small></button>
+            <button class="difficulty-option" data-difficulty="hard"><b>Hard</b><small>Intense</small></button>
+          </div>
+          <div id="keySetField" class="keyset-field hidden">
+            <label class="field-label" for="keySetSelect">PRACTICE KEY SET</label>
+            <select id="keySetSelect" class="select-control">
+              <option value="home">Home row · A S D F J K L</option>
+              <option value="top">Top row · Q W E R T Y U I</option>
+              <option value="all">All letters · A–Z</option>
+            </select>
+            <small class="field-hint">Your selection changes the keys used during the session.</small>
+          </div>
+          <div class="rules-box"><span class="rules-icon">◎</span><div><b id="rulesTitle">How to play</b><p id="rulesText">Press the matching letter on your physical keyboard. Wrong keys cost 2 points; 6 missed bubbles ends the run.</p></div></div>
+          <button class="primary-button start-button" id="startGame">Start session <span>→</span></button>
+          <p class="no-reload-note">NO PAGE RELOAD · YOUR PROGRESS IS TRACKED LIVE</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div class="game-header">
+        <button class="back-button compact" id="quitGame">← <span>Exit session</span></button>
+        <div class="game-mode-title"><span class="live-dot"></span><span id="gameModeName">BUBBLES</span><small id="gameDifficulty">EASY MODE</small></div>
+        <div class="game-actions"><button class="ghost-button" id="resetGame" type="button" title="Clear this run and return to settings">⟲ <span>Reset</span></button><button class="ghost-button" id="restartGame" type="button" title="Start a fresh run with the same settings">↻ <span>Restart</span></button></div>
+      </div>
+      <div class="stats-strip" id="statsStrip"></div>
+      <div class="game-instruction"><span class="instruction-icon">⌨</span><span id="gameInstruction">Press the letter on your keyboard to pop its bubble.</span><span class="keyboard-live" id="keyboardLive">KEYBOARD ACTIVE</span></div>
+      <div class="playfield-wrap">
+        <div class="playfield" id="playfield">
+          <div class="field-grid"></div>
+          <div class="field-topline"><span>PLAY AREA</span><span id="fieldStatus">● LIVE SESSION</span></div>
+          <div class="bubble-layer" id="bubbleLayer"></div>
+          <div class="magnet-stage hidden" id="magnetStage">
+            <div class="target-label">YOUR TARGET KEY</div>
+            <div class="target-key" id="targetKey">A</div>
+            <div class="target-subtitle" id="targetSubtitle">FIND IT. PRESS IT. REPEAT.</div>
+            <div class="virtual-keyboard" id="virtualKeyboard"></div>
+          </div>
+          <div class="feedback-toast" id="feedbackToast" aria-live="polite"></div>
+          <div class="paused-overlay hidden" id="pausedOverlay"><div>SESSION PAUSED</div><small>Press Resume to continue</small><button class="primary-button" id="resumeGame">Resume session</button></div>
+        </div>
+      </div>
+      <div class="game-bottom"><span><kbd>ESC</kbd> Exit session</span><span id="bottomHint">Six misses and the run is over.</span><button class="text-button" id="pauseGame">Ⅱ Pause</button></div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="result-wrap">
+        <div class="result-emblem" id="resultEmblem">✦</div>
+        <span class="section-kicker" id="resultKicker">SESSION COMPLETE</span>
+        <h1 id="resultTitle">Nice run<span>.</span></h1>
+        <p id="resultMessage">Every session makes you faster. Ready for another?</p>
+        <div class="result-score-card"><span>FINAL SCORE</span><strong id="finalScore">0</strong><small>POINTS</small></div>
+        <div class="result-stats" id="resultStats"></div>
+        <div class="result-actions"><button class="primary-button" id="playAgain">Play again <span>↻</span></button><button class="secondary-button" id="chooseMode">Choose another mode</button></div>
+      </div>
+    </section>
+  </main>
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
